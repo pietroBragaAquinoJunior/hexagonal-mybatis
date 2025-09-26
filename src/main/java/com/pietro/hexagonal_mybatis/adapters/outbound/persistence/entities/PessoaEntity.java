@@ -5,8 +5,6 @@ public class PessoaEntity {
     private String nome;
     private int idade;
 
-
-    
     public PessoaEntity() {
     }
 

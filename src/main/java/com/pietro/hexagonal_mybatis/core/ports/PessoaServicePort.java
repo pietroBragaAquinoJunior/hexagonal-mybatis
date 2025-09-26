@@ -4,5 +4,9 @@ import com.pietro.hexagonal_mybatis.core.domain.PessoaDomain;
 import java.util.List;
 
 public interface PessoaServicePort {
-    public List<PessoaDomain> listarTodos();
+
+    public List<PessoaDomain> findAll();
+
+    PessoaDomain findById(Integer id);
+
 }

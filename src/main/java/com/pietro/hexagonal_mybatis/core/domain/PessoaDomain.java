@@ -5,8 +5,6 @@ public class PessoaDomain {
     private String nome;
     private int idade;
 
-    
-
     public PessoaDomain() {
     }
 

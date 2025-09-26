@@ -9,13 +9,19 @@ import com.pietro.hexagonal_mybatis.core.ports.PessoaServicePort;
 
 public class PessoaServicePortImpl implements PessoaServicePort {
 
-    private final PessoaPersistencePort repository;
+    private final PessoaPersistencePort pessoaPersistencePort;
 
-    public PessoaServicePortImpl(PessoaPersistencePort repository) {
-        this.repository = repository;
+    public PessoaServicePortImpl(PessoaPersistencePort pessoaPersistencePort) {
+        this.pessoaPersistencePort = pessoaPersistencePort;
     }
 
-    public List<PessoaDomain> listarTodos() {
-        return repository.findAll();
+    public List<PessoaDomain> findAll() {
+        return pessoaPersistencePort.findAll();
     }
+
+    @Override
+    public PessoaDomain findById(Integer id) {
+        return pessoaPersistencePort.findById(id);
+    }
+
 }

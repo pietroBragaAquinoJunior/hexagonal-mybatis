@@ -15,13 +15,18 @@ public class PessoaPersistencePortImpl implements PessoaPersistencePort {
     private final PessoaBatisMapper batisMapper;
     private final PessoaStructMapper structMapper;
 
-    public PessoaPersistencePortImpl(PessoaBatisMapper mapper, PessoaStructMapper entityMapper) {
-        this.batisMapper = mapper;
-        this.structMapper = entityMapper;
+    public PessoaPersistencePortImpl(PessoaBatisMapper batisMapper, PessoaStructMapper structMapper) {
+        this.batisMapper = batisMapper;
+        this.structMapper = structMapper;
     }
 
     @Override
     public List<PessoaDomain> findAll() {
-        return structMapper.toDomainList(batisMapper.findAll());
+        return structMapper.entityListToDomainList(batisMapper.findAll());
+    }
+
+    @Override
+    public PessoaDomain findById(Integer id) {
+        return structMapper.entityToDomain(batisMapper.findById(id));
     }
 }

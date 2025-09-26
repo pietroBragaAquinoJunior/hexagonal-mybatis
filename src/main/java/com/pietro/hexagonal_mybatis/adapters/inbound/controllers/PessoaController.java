@@ -1,27 +1,46 @@
 package com.pietro.hexagonal_mybatis.adapters.inbound.controllers;
 
 
+import org.apache.catalina.connector.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pietro.hexagonal_mybatis.adapters.dtos.saida.PessoaResponseDto;
+import com.pietro.hexagonal_mybatis.adapters.mapper.PessoaStructMapper;
 import com.pietro.hexagonal_mybatis.core.domain.PessoaDomain;
 import com.pietro.hexagonal_mybatis.core.ports.PessoaServicePort;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaController {
 
-    private final PessoaServicePort service;
+    private final PessoaServicePort pessoaServicePort;
+    private final PessoaStructMapper pessoaStructMapper;
 
-    public PessoaController(PessoaServicePort service) {
-        this.service = service;
+    public PessoaController(PessoaServicePort pessoaServicePort, PessoaStructMapper pessoaStructMapper) {
+        this.pessoaServicePort = pessoaServicePort;
+        this.pessoaStructMapper = pessoaStructMapper;
     }
 
     @GetMapping
-    public List<PessoaDomain> listarTodos() {
-        return service.listarTodos();
+    public ResponseEntity<List<PessoaResponseDto>> findAll() {
+        List<PessoaResponseDto> pessoaResponseDtoList = pessoaStructMapper.domainListToDtoList(pessoaServicePort.findAll());
+        return ResponseEntity.ok(pessoaResponseDtoList);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PessoaResponseDto> getMethodName(@PathVariable Integer id) {
+        PessoaResponseDto pessoaResponseDto = pessoaStructMapper.domainToDto(pessoaServicePort.findById(id));
+        return ResponseEntity.ok(pessoaResponseDto);
+    }
+    
+    
+
 }

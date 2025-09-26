@@ -3,18 +3,41 @@ package com.pietro.hexagonal_mybatis.adapters.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
+import com.pietro.hexagonal_mybatis.adapters.dtos.entrada.PessoaRequestDto;
+import com.pietro.hexagonal_mybatis.adapters.dtos.saida.PessoaResponseDto;
 import com.pietro.hexagonal_mybatis.adapters.outbound.persistence.entities.PessoaEntity;
 import com.pietro.hexagonal_mybatis.core.domain.PessoaDomain;
 
 @Mapper(componentModel = "spring")
 public interface PessoaStructMapper {
 
-    PessoaDomain toDomain(PessoaEntity entity);
+    // domain | entity ===============
 
-    List<PessoaDomain> toDomainList(List<PessoaEntity> entities);
+    PessoaDomain entityToDomain(PessoaEntity entity);
 
-    PessoaEntity toEntity(PessoaDomain domain);
+    List<PessoaDomain> entityListToDomainList(List<PessoaEntity> entities);
 
-    List<PessoaEntity> toEntityList(List<PessoaDomain> domains);
+    PessoaEntity domainToEntity(PessoaDomain domain);
+
+    List<PessoaEntity> domainListToEntityList(List<PessoaDomain> domains);
+
+    // domain | dto ===================
+
+    // domain ~> response
+
+    PessoaResponseDto domainToDto(PessoaDomain pessoaDomain);
+
+    List<PessoaResponseDto> domainListToDtoList(List<PessoaDomain> pessoaDomainList);
+
+    // request ~> domain
+
+    @Mapping(target = "id", ignore = true )
+    PessoaDomain dtoToDomain(PessoaRequestDto pessoaRequestDto);
+
+    List<PessoaDomain> dtoListToDomainList(List<PessoaRequestDto> pessoaRequestDtoList);
+
+
+
 }

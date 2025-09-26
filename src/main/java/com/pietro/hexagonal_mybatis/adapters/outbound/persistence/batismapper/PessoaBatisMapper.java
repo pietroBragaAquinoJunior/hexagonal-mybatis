@@ -9,6 +9,10 @@ import com.pietro.hexagonal_mybatis.adapters.outbound.persistence.entities.Pesso
 
 @Mapper
 public interface PessoaBatisMapper {
+
     @Select("SELECT * FROM pessoas")
     List<PessoaEntity> findAll();
+
+    @Select("SELECT * FROM pessoas WHERE id = #{id}")
+    PessoaEntity findById(int id);
 }
