@@ -17,6 +17,7 @@
         #{nome}, #{idade}
     </sql>
 
+
    <select id="findAll" resultType="PessoaEntity">
         SELECT
           <include refid="allColumns" />
@@ -34,5 +35,20 @@
         INSERT INTO pessoas (<include refid="insertColumns" />)
         VALUES (<include refid="insertValues" />)
     </insert>
+
+    <update id="updatePessoa" parameterType="PessoaEntity">
+        UPDATE pessoas
+        <set>
+            <if test="nome != null">
+                nome = #{nome},
+            </if>
+            
+            <if test="idade != null">
+                idade = #{idade},
+            </if>
+            </set>
+        WHERE id = #{id}
+    </update>
+
 
 </mapper>

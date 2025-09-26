@@ -13,9 +13,11 @@ public interface PessoaBatisMapper {
 
     List<PessoaEntity> findAll();
 
-    PessoaEntity findById(int id);
+    PessoaEntity findById(Long id);
 
     // salvar nao retorna nada
     void savePessoa(PessoaEntity pessoaEntity);
+
+    void updatePessoa(PessoaEntity pessoaEntity);
 
 }

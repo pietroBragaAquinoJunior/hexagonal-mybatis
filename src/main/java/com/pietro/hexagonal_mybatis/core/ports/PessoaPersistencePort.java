@@ -8,7 +8,10 @@ public interface PessoaPersistencePort {
 
     List<PessoaDomain> findAll();
 
-    PessoaDomain findById(Integer id);
+    PessoaDomain findById(Long id);
 
     PessoaDomain savePessoa(PessoaDomain pessoaDomain);
+
+    PessoaDomain updatePessoa(PessoaDomain pessoaDomain);
+
 }

@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import com.pietro.hexagonal_mybatis.adapters.dtos.entrada.PessoaRequestDto;
+import com.pietro.hexagonal_mybatis.adapters.dtos.entrada.PessoaRequestUpdateDto;
 import com.pietro.hexagonal_mybatis.adapters.dtos.saida.PessoaResponseDto;
 import com.pietro.hexagonal_mybatis.adapters.outbound.persistence.entities.PessoaEntity;
 import com.pietro.hexagonal_mybatis.core.domain.PessoaDomain;
@@ -38,6 +39,8 @@ public interface PessoaStructMapper {
 
     List<PessoaDomain> dtoListToDomainList(List<PessoaRequestDto> pessoaRequestDtoList);
 
+    // outros
 
+    PessoaDomain updateDtoToDomain(PessoaRequestUpdateDto pessoaRequestUpdateDto);
 
 }

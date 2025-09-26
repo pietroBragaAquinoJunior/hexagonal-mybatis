@@ -20,13 +20,18 @@ public class PessoaServicePortImpl implements PessoaServicePort {
     }
 
     @Override
-    public PessoaDomain findById(Integer id) {
+    public PessoaDomain findById(Long id) {
         return pessoaPersistencePort.findById(id);
     }
 
     @Override
     public PessoaDomain savePessoa(PessoaDomain pessoaDomain) {
         return pessoaPersistencePort.savePessoa(pessoaDomain);
+    }
+
+    @Override
+    public PessoaDomain updatePessoa(PessoaDomain pessoaDomain) {
+        return pessoaPersistencePort.updatePessoa(pessoaDomain);
     }
 
 }

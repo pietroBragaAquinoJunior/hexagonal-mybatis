@@ -27,7 +27,7 @@ public class PessoaPersistencePortImpl implements PessoaPersistencePort {
     }
 
     @Override
-    public PessoaDomain findById(Integer id) {
+    public PessoaDomain findById(Long id) {
         return pessoaStructMapper.entityToDomain(pessoaBatisMapper.findById(id));
     }
 
@@ -39,6 +39,19 @@ public class PessoaPersistencePortImpl implements PessoaPersistencePort {
         pessoaBatisMapper.savePessoa(pessoaEntity);
 
         return pessoaStructMapper.entityToDomain(pessoaEntity);
+    }
+
+    @Override
+    public PessoaDomain updatePessoa(PessoaDomain pessoaDomain) {
+        PessoaEntity pessoaEntity = pessoaStructMapper.domainToEntity(pessoaDomain);
+        
+        // No caso do update, ele nao preenche automaticamente
+        pessoaBatisMapper.updatePessoa(pessoaEntity);
+
+        // preciso buscar pelo id depois de fazer o update, para mostrar todos os campos.
+        PessoaEntity pessoaEntityUpdated = pessoaBatisMapper.findById(pessoaEntity.getId());
+
+        return pessoaStructMapper.entityToDomain(pessoaEntityUpdated);
     }
 
 }
