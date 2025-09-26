@@ -3,16 +3,19 @@ package com.pietro.hexagonal_mybatis.adapters.outbound.persistence.batismapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import com.pietro.hexagonal_mybatis.adapters.outbound.persistence.entities.PessoaEntity;
+
+// Estou usando XML para alimentar os métodos!
 
 @Mapper
 public interface PessoaBatisMapper {
 
-    @Select("SELECT * FROM pessoas")
     List<PessoaEntity> findAll();
 
-    @Select("SELECT * FROM pessoas WHERE id = #{id}")
     PessoaEntity findById(int id);
+
+    // salvar nao retorna nada
+    void savePessoa(PessoaEntity pessoaEntity);
+
 }

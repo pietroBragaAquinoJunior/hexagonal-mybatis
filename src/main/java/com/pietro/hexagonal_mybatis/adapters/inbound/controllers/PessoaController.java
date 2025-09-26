@@ -8,13 +8,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pietro.hexagonal_mybatis.adapters.dtos.entrada.PessoaRequestDto;
 import com.pietro.hexagonal_mybatis.adapters.dtos.saida.PessoaResponseDto;
 import com.pietro.hexagonal_mybatis.adapters.mapper.PessoaStructMapper;
 import com.pietro.hexagonal_mybatis.core.domain.PessoaDomain;
 import com.pietro.hexagonal_mybatis.core.ports.PessoaServicePort;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -40,7 +43,13 @@ public class PessoaController {
         PessoaResponseDto pessoaResponseDto = pessoaStructMapper.domainToDto(pessoaServicePort.findById(id));
         return ResponseEntity.ok(pessoaResponseDto);
     }
-    
+
+    @PostMapping
+    public ResponseEntity<PessoaResponseDto> postMethodName(@RequestBody PessoaRequestDto pessoaRequestDto) {
+        PessoaDomain pessoaDomain = pessoaStructMapper.dtoToDomain(pessoaRequestDto);
+        PessoaResponseDto pessoaResponseDto = pessoaStructMapper.domainToDto(pessoaServicePort.savePessoa(pessoaDomain));
+        return ResponseEntity.ok(pessoaResponseDto);
+    }
     
 
 }

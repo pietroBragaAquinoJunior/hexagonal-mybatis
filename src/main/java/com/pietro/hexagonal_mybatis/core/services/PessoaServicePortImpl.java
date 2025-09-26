@@ -24,4 +24,9 @@ public class PessoaServicePortImpl implements PessoaServicePort {
         return pessoaPersistencePort.findById(id);
     }
 
+    @Override
+    public PessoaDomain savePessoa(PessoaDomain pessoaDomain) {
+        return pessoaPersistencePort.savePessoa(pessoaDomain);
+    }
+
 }

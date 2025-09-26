@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pietro.hexagonal_mybatis.adapters.outbound.persistence.batismapper.PessoaBatisMapper">
+
+    <sql id="allColumns">
+        id, nome, idade
+    </sql>
+
+    <sql id="insertColumns">
+        nome, idade
+    </sql>
+
+    <sql id="insertValues">
+        #{nome}, #{idade}
+    </sql>
+
+   <select id="findAll" resultType="PessoaEntity">
+        SELECT
+          <include refid="allColumns" />
+        FROM pessoas
+    </select>
+
+    <select id="findById" resultType="PessoaEntity">
+        SELECT
+          <include refid="allColumns" />
+        FROM pessoas
+        WHERE id = #{id}
+    </select>
+
+    <insert id="savePessoa" useGeneratedKeys="true" keyProperty="id" parameterType="PessoaEntity">
+        INSERT INTO pessoas (<include refid="insertColumns" />)
+        VALUES (<include refid="insertValues" />)
+    </insert>
+
+</mapper>

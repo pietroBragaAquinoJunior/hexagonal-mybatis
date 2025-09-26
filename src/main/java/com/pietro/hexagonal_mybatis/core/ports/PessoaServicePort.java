@@ -5,8 +5,9 @@ import java.util.List;
 
 public interface PessoaServicePort {
 
-    public List<PessoaDomain> findAll();
+    List<PessoaDomain> findAll();
 
     PessoaDomain findById(Integer id);
-
+    
+    PessoaDomain savePessoa(PessoaDomain pessoaDomain);
 }
