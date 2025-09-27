@@ -1,7 +1,5 @@
 package com.pietro.hexagonal_mybatis.adapters.outbound.persistence.entities;
 
-import java.util.Set;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PessoaEntity {
+public class LivroEntity {
     private Long id;
-    private String nome;
-    private int idade;
-    private Set<LivroEntity> livros; 
+    private String titulo;
+    private Long pessoaId; 
 }
