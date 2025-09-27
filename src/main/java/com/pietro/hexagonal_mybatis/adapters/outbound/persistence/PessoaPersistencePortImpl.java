@@ -54,4 +54,9 @@ public class PessoaPersistencePortImpl implements PessoaPersistencePort {
         return pessoaStructMapper.entityToDomain(pessoaEntityUpdated);
     }
 
+    @Override
+    public void deletePessoa(Long id) {
+        pessoaBatisMapper.deletePessoa(id);
+    }
+
 }

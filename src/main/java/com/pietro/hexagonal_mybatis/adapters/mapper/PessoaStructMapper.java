@@ -30,6 +30,7 @@ public interface PessoaStructMapper {
 
     PessoaResponseDto domainToDto(PessoaDomain pessoaDomain);
 
+    @Mapping(target = "id", ignore = true )
     List<PessoaResponseDto> domainListToDtoList(List<PessoaDomain> pessoaDomainList);
 
     // request ~> domain
@@ -40,7 +41,8 @@ public interface PessoaStructMapper {
     List<PessoaDomain> dtoListToDomainList(List<PessoaRequestDto> pessoaRequestDtoList);
 
     // outros
-
+    @Mapping(target = "nome", ignore = true )
+    @Mapping(target = "id", ignore = true )
     PessoaDomain updateDtoToDomain(PessoaRequestUpdateDto pessoaRequestUpdateDto);
 
 }

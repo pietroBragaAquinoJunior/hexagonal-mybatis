@@ -12,4 +12,6 @@ public interface PessoaServicePort {
     PessoaDomain savePessoa(PessoaDomain pessoaDomain);
 
     PessoaDomain updatePessoa(PessoaDomain pessoaDomain);
+
+    void deletePessoa(Long id);
 }

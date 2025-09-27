@@ -1,6 +1,8 @@
 package com.pietro.hexagonal_mybatis.adapters.inbound.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,7 +51,7 @@ public class PessoaController {
     public ResponseEntity<PessoaResponseDto> savePessoa(@RequestBody PessoaRequestDto pessoaRequestDto) {
         PessoaDomain pessoaDomain = pessoaStructMapper.dtoToDomain(pessoaRequestDto);
         PessoaResponseDto pessoaResponseDto = pessoaStructMapper.domainToDto(pessoaServicePort.savePessoa(pessoaDomain));
-        return ResponseEntity.ok(pessoaResponseDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaResponseDto);
     }
     
 
@@ -64,6 +66,12 @@ public class PessoaController {
         PessoaDomain pessoaDomainUpdated = pessoaServicePort.updatePessoa(pessoaDomain);
 
         return ResponseEntity.ok(pessoaStructMapper.domainToDto(pessoaDomainUpdated));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePessoa(@PathVariable Long id){
+        pessoaServicePort.deletePessoa(id);
+        return ResponseEntity.noContent().build();
     }
 
 

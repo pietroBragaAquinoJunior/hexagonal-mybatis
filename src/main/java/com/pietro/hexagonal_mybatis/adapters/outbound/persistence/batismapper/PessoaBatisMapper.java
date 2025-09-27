@@ -20,4 +20,6 @@ public interface PessoaBatisMapper {
 
     void updatePessoa(PessoaEntity pessoaEntity);
 
+    void deletePessoa(Long id);
+
 }

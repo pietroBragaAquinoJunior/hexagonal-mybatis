@@ -50,5 +50,9 @@
         WHERE id = #{id}
     </update>
 
+    <delete id="deletePessoa">
+        DELETE FROM pessoas
+        WHERE id = #{id}
+    </delete>
 
 </mapper>

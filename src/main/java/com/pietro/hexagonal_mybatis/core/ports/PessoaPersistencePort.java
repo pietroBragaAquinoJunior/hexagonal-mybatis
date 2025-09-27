@@ -14,4 +14,6 @@ public interface PessoaPersistencePort {
 
     PessoaDomain updatePessoa(PessoaDomain pessoaDomain);
 
+    void deletePessoa(Long id);
+
 }

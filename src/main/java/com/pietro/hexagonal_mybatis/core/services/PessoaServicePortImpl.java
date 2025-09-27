@@ -34,4 +34,9 @@ public class PessoaServicePortImpl implements PessoaServicePort {
         return pessoaPersistencePort.updatePessoa(pessoaDomain);
     }
 
+    @Override
+    public void deletePessoa(Long id) {
+        pessoaPersistencePort.deletePessoa(id);
+    }
+
 }
