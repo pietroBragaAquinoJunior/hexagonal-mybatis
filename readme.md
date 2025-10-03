@@ -1,33 +1,43 @@
-Conclusão: Cheguei à conclusão que o myBatis é inviável. Simplesmente eu queria calcular a pontuação de uma pessoa baseada no número de livros que essa pessoa possui (Relacionamento one to many simples). Para eu conseguir carregar o Set de livros dentro da pessoa e fugir do problema de n+1 eu preciso manualmente
-declarar no xml um mapper para que o mybatis entenda onde colocar cada retorno do sql. Isso fica custoso não só de fazer como de dar manutenção. Se eu acrescentar qualquer valor ao livro ou a pessoa eu teria que ir no xml novamente e alterar não só a consulta quanto o mapeamento. No JPA isso é mil vezes, cem mil vezes mais fácil pois ele mapeia esses livros para esse set que está em pessoa automaticamente.
+# 🧑‍💻 Spring Boot Rest API: MyBatis & Direct SQL Persistence
 
-ESTRUTURA
+<img width="1000" alt="image" src="https://github.com/user-attachments/assets/71c4e5d5-8e0f-447d-ac74-b064c27f40d4" />
 
-src/main/java/com/exemplo/pessoas
-    ├── application
-    │    └── service
-    │         └── PessoaService.java
-    │
-    ├── domain
-    │    ├── model
-    │    │    └── Pessoa.java
-    │    └── repository
-    │         └── PessoaRepository.java
-    │
-    ├── infrastructure
-    │    ├── config
-    │    │    └── MyBatisConfig.java
-    │    ├── persistence
-    │    │    ├── mapper
-    │    │    │    └── PessoaMapper.java
-    │    │    ├── entity
-    │    │    │    └── PessoaEntity.java
-    │    │    ├── repository
-    │    │    │    └── PessoaRepositoryImpl.java
-    │    │    └── mapstruct
-    │    │         └── PessoaEntityMapper.java
-    │    │
-    │    └── rest
-    │         └── PessoaController.java
-    │
-    └── PessoasApplication.java
+> **💬 Quick Overview:** This project showcases a Spring Boot REST API implementation focusing on **direct SQL persistence** using **MyBatis**. It demonstrates how to leverage MyBatis Mappers for flexible, high-performance data access, offering granular control over SQL statements. It maintains the **Ports and Adapters (Hexagonal) Architecture** to ensure clean separation between the core business logic and the persistence layer.
+
+---
+
+## 🧩 Key Features & Highlights
+
+* **Clean Architecture:** Implements the **Ports and Adapters (Hexagonal) Architecture** for clear separation of concerns, keeping the core business logic independent of the persistence framework.
+* **Direct SQL Control:** Utilizes **MyBatis** for data access, allowing for **highly optimized and explicit SQL** queries defined in XML Mappers.
+* **Flexible Persistence:** Demonstrates a non-ORM approach to data management, ideal for complex reporting or legacy database integrations.
+* **Data Mapping:** Professional object mapping is handled by **MapStruct**, ensuring clean and efficient data transfer between layers (DTOs and Domain).
+
+---
+
+## ⚙️ Tech Stack & Practices
+
+| Category | Technologies / Practices |
+| :--- | :--- |
+| **Core** | **Spring Boot** (Java) |
+| **Persistence** | **MyBatis** (SQL Mapper Framework) |
+| **Architecture** | **Ports and Adapters** (Hexagonal), Clean Code |
+| **Database** | **H2 Memory Database** |
+| **Utilities** | **MapStruct** (Data Mapping),
+
+---
+
+## ⏳ Live Status and Deployment
+
+| Status | Live Demo / Repository Link |
+| :--- | :--- |
+| 🚧 **In Development** | **[In Development](www.google.com)** |
+
+---
+
+## 🛠 Local Installation and Setup
+- **Clone the repository**: `git clone https://github.com/pietroBragaAquinoJunior/spring-boot-clean-arch-mybatis-api/`
+- **Navigate to the directory**: `cd spring-boot-clean-arch-mybatis-api`
+- **Build and Run**: Use your preferred IDE (like IntelliJ IDEA) to run the Spring Boot application, or use the Maven/Gradle wrapper:
+    - **Maven**: `./mvnw spring-boot:run`
+    - **Gradle**: `./gradlew bootRun`
